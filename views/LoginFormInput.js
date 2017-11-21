@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextInput } from 'react-native';
-import { styles, colors } from './Styles';
+import { styles, colors } from '../Styles';
 
 export default class LoginFormInput extends React.Component {
   defaultProps: {
@@ -16,6 +16,8 @@ export default class LoginFormInput extends React.Component {
         underlineColorAndroid = {colors.dark}
         placeholderTextColor = {colors.white}
         secureTextEntry = {this.props.secureTextEntry}
+        onChangeText={this.props.onChange}
+        value={this.props.value}
       />
     );
   }
