@@ -16,6 +16,7 @@ export default class LoginScreen extends React.Component {
   }
   loggedIn = (user) =>{
     const { navigate } = this.props.navigation;
+    console.log(user);
     if(!user.token)return;
     AsyncStorage.setItem("@Mourgos:token", user.token).
     then( () => navigate("Orders"))

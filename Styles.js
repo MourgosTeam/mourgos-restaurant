@@ -5,7 +5,8 @@ export let colors = {
   secondary: '#0D3B66',
   dark: '#3E3449',
   light: '#FBF5DD',
-  white: '#FCFCFF'
+  white: '#FCFCFF',
+  lightgray : '#FaFaFa'
 };
 
 export let styles = StyleSheet.create({
@@ -33,6 +34,19 @@ export let styles = StyleSheet.create({
   textInput: {
     padding: 10,
     color: colors.dark
-  }
+  },
+  orderList: {
+    width:'97%',
 
+  },
+  orderListItem: {
+    alignItems: 'center',
+    padding: 5,
+    margin: 5,
+    backgroundColor: colors.lightgray,
+    width: '100%'
+  },
+  orderListItemText: {
+    color : colors.secondary
+  }
 });
