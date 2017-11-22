@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, KeyboardAvoidingView, View, Image, TextInput, Button, ListView, AsyncStorage } from 'react-native';
+import { TouchableOpacity, Text, KeyboardAvoidingView, View, Image, TextInput, Button, ListView, AsyncStorage } from 'react-native';
 import {styles, colors} from '../Styles';
 import LoginForm from './LoginForm';
 import API from '../helpers/net';
@@ -13,15 +13,23 @@ class OrderRow extends React.Component{
     this.highlight = {
       color: this.highlightColors[this.props.data.Status]
     };
+    this.description = this.props.data.FullDescription.map((data,index) => {
+      var s =  `${data.Quantity} x ${data.Name} \n`;
+      s += data.Attributes.map( (attr) => {
+        return `${attr.Name} - ${attr.Value}` + ((attr.Price>0)? `+ ${attr.Price}` : '');
+      }).join('\n');  
+      return s;
+    });
   }
-  render() {
-    return (<View style = {styles.orderRow}>
+  render() { 
+    return (<TouchableOpacity style={{}} onPress={() => this.props.onPress(this.props.data.id)}>
+            <View style = {styles.orderRow}>
               <View style = {styles.orderRowLeft}>
                 <Text style={styles.orderRowLeftText, styles.boldText}>
                   {this.props.data.Address} - {this.props.data.Name}
                 </Text>
-                <Text style={styles.orderRowLeftText}>
-                  {this.props.data.Description}
+                <Text style={styles.orderRowLeftDescription}>
+                  {this.description}
                 </Text>
               </View>
               <View style = {styles.orderRowRight}>
@@ -32,7 +40,8 @@ class OrderRow extends React.Component{
                   { parseFloat(this.props.data.Total).toFixed(2) } €
                 </Text>
               </View>
-            </View>);
+            </View> 
+            </TouchableOpacity>);
   }
 }
 export default class ListOrdersScreen extends React.Component {
@@ -42,32 +51,36 @@ export default class ListOrdersScreen extends React.Component {
 
   constructor(props){
     super(props);
+    const imageBaseURL = "http://mourgos.gr";
     const { navigate } = props.navigation;
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource : ds.cloneWithRows([]),
       ImageUrl : require('../img/mourgos-logo-white.png')
     }
-    const baseURL = "http://mourgos.gr";
-    AsyncStorage.getItem("@Mourgos:token").then( (token) => {
-      API.getIt("catalogues/my", token).then((data)=>data.json()).
-      then((data) => {
-        let img = (baseURL + data[0].Image);
-        this.setState({ 
-          ImageUrl : {uri : img}
-        });
-      });      
-      return API.getIt("orders/my",token);
-    }).then( (data) => {
-      return data.json();
-    }).then( (data) => {
+    API.getWithToken("catalogues/my").
+    then((data) => {
+      let img = (imageBaseURL + data[0].Image);
+      this.setState({ 
+        ImageUrl : {uri : img}
+      });
+    }).then( () =>       
+    API.getWithToken("orders/my")).
+    then( (data) => {
       this.setState({
         dataSource : ds.cloneWithRows(data)
       }); 
     }).catch( (err) => {
+      console.log("Ok this is handled ");
       console.log(err);
+
     });
   }
+
+  goToOrder = (orderId) => {
+    this.props.navigation.navigate("OrderDetails",{orderId : orderId});
+  }
+
   render() {
     return (
       <KeyboardAvoidingView 
@@ -77,14 +90,14 @@ export default class ListOrdersScreen extends React.Component {
         <View style = {styles.header}>
           <Image
             source = {this.state.ImageUrl}
-            style = {{height: 70, padding: 30}}
+            style = {{height: 70, margin: 40}}
             resizeMode = 'contain'
           />          
         </View>
         <ListView style={styles.orderList}
             enableEmptySections={true} 
             dataSource={this.state.dataSource}
-            renderRow={(rowData) => <OrderRow data={rowData} />}
+            renderRow={(rowData) => <OrderRow data={rowData} onPress={this.goToOrder}/>}
           />
       </KeyboardAvoidingView>
     );

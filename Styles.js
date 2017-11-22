@@ -66,6 +66,9 @@ export let styles = StyleSheet.create({
   orderRowLeftText: {
     fontSize: 16
   },
+  orderRowLeftDescription: {
+    fontSize: 12
+  },
   orderRowRightText: {
     fontSize: 12
   },
@@ -86,5 +89,32 @@ export let styles = StyleSheet.create({
   },
   centerText : {
     textAlign : 'center'
+  },
+  orderDetailsContainer : {
+    borderWidth : 1,
+    borderColor : colors.lightgray,
+    padding : 30,
+    backgroundColor : colors.white,
+    width: '100%'  
+  },
+  orderContainer: {
+    backgroundColor: colors.gray,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    padding : 30
+  },
+  orderDetailsHeader : {
+    fontSize : 22,
+    color : colors.white,
+    paddingBottom: 10
+  },
+  orderDetailsAttributes : {
+    fontSize : 14,
+    color : colors.gray
+  },
+  orderDetailsProducts : {
+    fontSize : 16,
+    color : colors.dark
   }
 });
