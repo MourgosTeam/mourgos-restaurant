@@ -4,6 +4,37 @@ import {styles, colors} from '../Styles';
 import LoginForm from './LoginForm';
 import API from '../helpers/net';
 
+
+class OrderRow extends React.Component{
+  constructor(props){
+    super(props);
+    this.statusTexts = ['ΝΕΑ ΠΑΡΑΓΓΕΛΙΑ', 'ΕΤΟΙΜΑΣΤΗΚΕ','ΣΤΑΛΘΗΚΕ'];
+    this.highlightColors = [colors.main, colors.lightgreen, colors.lightgreen];
+    this.highlight = {
+      color: this.highlightColors[this.props.data.Status]
+    };
+  }
+  render() {
+    return (<View style = {styles.orderRow}>
+              <View style = {styles.orderRowLeft}>
+                <Text style={styles.orderRowLeftText, styles.boldText}>
+                  {this.props.data.Address} - {this.props.data.Name}
+                </Text>
+                <Text style={styles.orderRowLeftText}>
+                  {this.props.data.Description}
+                </Text>
+              </View>
+              <View style = {styles.orderRowRight}>
+                <Text style={styles.orderRowRightText, styles.centerText, styles.boldText , this.highlight} adjustsFontSizeToFit={true} numberOfLines={1}>
+                  { this.statusTexts[this.props.data.Status] }
+                </Text> 
+                <Text style={styles.orderRowRightText, styles.centerText}>  
+                  { parseFloat(this.props.data.Total).toFixed(2) } €
+                </Text>
+              </View>
+            </View>);
+  }
+}
 export default class ListOrdersScreen extends React.Component {
   static navigationOptions = {
     title: 'Παραγγελίες',
@@ -53,15 +84,7 @@ export default class ListOrdersScreen extends React.Component {
         <ListView style={styles.orderList}
             enableEmptySections={true} 
             dataSource={this.state.dataSource}
-            renderRow={(rowData) => <View style = {styles.orderListItem}>
-                                      <Text style = {styles.orderListItemText}>
-                                        {rowData.Address} - {parseFloat(rowData.Total).toFixed(2)}
-                                      </Text>
-                                      <Text style = {styles.orderListItemText}>
-                                        {rowData.id}
-                                      </Text>
-
-                                    </View>}
+            renderRow={(rowData) => <OrderRow data={rowData} />}
           />
       </KeyboardAvoidingView>
     );

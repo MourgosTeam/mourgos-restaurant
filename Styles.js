@@ -6,7 +6,9 @@ export let colors = {
   dark: '#3E3449',
   light: '#FBF5DD',
   white: '#FCFCFF',
-  lightgray : '#FaFaFa'
+  lightgray : '#FAFAFA',
+  gray : '#CECECE',
+  lightgreen: '#60EE55'
 };
 
 export let styles = StyleSheet.create({
@@ -37,16 +39,52 @@ export let styles = StyleSheet.create({
   },
   orderList: {
     width:'97%',
-
   },
-  orderListItem: {
-    alignItems: 'center',
+  orderRow : {
+    backgroundColor: colors.white,
+    flex: 1,
+    flexDirection : 'row',
     padding: 5,
     margin: 5,
-    backgroundColor: colors.lightgray,
-    width: '100%'
+    justifyContent: 'space-between',
+    borderWidth:  1,
+    borderColor: colors.gray,
+    alignItems: 'center'
   },
-  orderListItemText: {
-    color : colors.secondary
+  orderRowLeft: { 
+    flex  : 3,
+    borderRightWidth: 2,
+    paddingRight: 5
+  },
+  orderRowRight : {
+    paddingLeft: 5,
+    flex: 2 
+  },
+  orderRowPrice : {
+    textAlign: 'left' 
+  },
+  orderRowLeftText: {
+    fontSize: 16
+  },
+  orderRowRightText: {
+    fontSize: 12
+  },
+  smallText: {
+    fontSize : 12
+  },
+  bigText : {
+    fontSize : 16
+  },
+  boldText : {
+    fontWeight: 'bold'
+  },
+  rightText : {
+    textAlign : 'right'
+  },
+  leftText : {
+    textAlign : 'left'
+  },
+  centerText : {
+    textAlign : 'center'
   }
 });
