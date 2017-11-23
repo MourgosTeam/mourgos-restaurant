@@ -1,5 +1,16 @@
 {
+  
   "expo": {
-    "sdkVersion": "22.0.0"
+    "name": "MourgosApp",
+    "icon": "./icon512x512.png",
+    "version": "1.0.0",
+    "slug": "Mourgos.gr",
+    "sdkVersion": "22.0.0",
+    "ios": {
+      "bundleIdentifier": "com.mourgos.restaurantapp"
+    },
+    "android": {
+      "package": "com.mourgos.restaurantapp"
+    }
   }
 }

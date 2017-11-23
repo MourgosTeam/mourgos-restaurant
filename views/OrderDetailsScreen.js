@@ -12,7 +12,7 @@ export default class OrderDetailsScreen extends React.Component {
     super(props);
     
     this.statusTexts = ['ΝΕΑ ΠΑΡΑΓΓΕΛΙΑ', 'ΕΤΟΙΜΑΣΤΗΚΕ','ΣΤΑΛΘΗΚΕ'];
-    this.statusTexts[666] = 'ΑΠΟΡΡΙΦΘΗΚΕ';
+    this.statusTexts[99] = 'ΑΠΟΡΡΙΦΘΗΚΕ';
     this.state = {
       order: {
         Status : 0,
@@ -35,13 +35,14 @@ export default class OrderDetailsScreen extends React.Component {
     });
   }
   changeStatus = (statusCode) => {
-    API.postWithToken("orders/" + this.code, { statusCode : statusCode });
+    API.postWithToken("orders/" + this.code, { statusCode : statusCode }).
+    then((order)=> this.props.navigation.goBack());
   }
   render() {
     return (
       <View behavior = "padding"
         style = {styles.orderContainer}>
-        <Text style={styles.orderDetailsHeader}>
+        <Text style={styles.orderDetailsHeader}> 
           {this.state.order.statusText}
         </Text>
         <View style={styles.orderDetailsContainer} >
@@ -68,12 +69,12 @@ export default class OrderDetailsScreen extends React.Component {
               <Button
                 title = "ΑΠΟΡΡΙΨΗ"
                 color = {colors.main}
-                onPress={this.changeStatus(666)}
+                onPress={() => this.changeStatus(99)}
               />
               <Button
                 title = "ΕΤΟΙΜΑΣΤΗΚΕ"
                 color = {colors.lightgreen}
-                onPress={this.changeStatus(1)}
+                onPress={() => this.changeStatus(1)}
               />
             </View>
         </View>

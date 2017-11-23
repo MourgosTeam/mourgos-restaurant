@@ -14,7 +14,7 @@ const Navi = StackNavigator({
 class App extends React.Component {
   render() {
     return (
-      <Navi />
+      <Navi /> 
     );
   }
 }

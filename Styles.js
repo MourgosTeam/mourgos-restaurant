@@ -58,7 +58,8 @@ export let styles = StyleSheet.create({
   },
   orderRowRight : {
     paddingLeft: 5,
-    flex: 2 
+    flex: 2,
+    justifyContent: 'center'
   },
   orderRowPrice : {
     textAlign: 'left' 
@@ -70,7 +71,8 @@ export let styles = StyleSheet.create({
     fontSize: 12
   },
   orderRowRightText: {
-    fontSize: 12
+    fontSize: 12,
+    textAlign: 'center' 
   },
   smallText: {
     fontSize : 12

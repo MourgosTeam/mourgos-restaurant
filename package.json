@@ -12,6 +12,7 @@
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
+    "pubandroid": "react-native-scripts android --variant=release",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch"
   },
@@ -22,6 +23,7 @@
     "expo": "^22.0.0",
     "react": "16.0.0-beta.5",
     "react-native": "^0.49.5",
-    "react-navigation": "^1.0.0-beta.20"
+    "react-navigation": "^1.0.0-beta.20",
+    "socket.io": "^2.0.4"
   }
 }

@@ -4,11 +4,14 @@ import {styles, colors} from '../Styles';
 import LoginForm from './LoginForm';
 import API from '../helpers/net';
 
+import SocketIOClient from 'socket.io-client';
+
 
 class OrderRow extends React.Component{
   constructor(props){
     super(props);
     this.statusTexts = ['ΝΕΑ ΠΑΡΑΓΓΕΛΙΑ', 'ΕΤΟΙΜΑΣΤΗΚΕ','ΣΤΑΛΘΗΚΕ'];
+    this.statusTexts[99] = 'ΑΠΟΡΡΙΦΘΗΚΕ';
     this.highlightColors = [colors.main, colors.lightgreen, colors.lightgreen];
     this.highlight = {
       color: this.highlightColors[this.props.data.Status]
@@ -44,39 +47,67 @@ class OrderRow extends React.Component{
             </TouchableOpacity>);
   }
 }
+const imageBaseURL = "http://mourgos.gr";
 export default class ListOrdersScreen extends React.Component {
   static navigationOptions = {
     title: 'Παραγγελίες',
   };
-
+ 
   constructor(props){
     super(props);
-    const imageBaseURL = "http://mourgos.gr";
     const { navigate } = props.navigation;
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource : ds.cloneWithRows([]),
+      dataSource : this.ds.cloneWithRows([]),
       ImageUrl : require('../img/mourgos-logo-white.png')
     }
-    API.getWithToken("catalogues/my").
+    
+    this.loadCatalogue().then( () => this.loadOrders()).catch( (err) => {
+      console.log("Ok this is handled ");
+      console.log(err);
+    });    
+  }
+
+  setupSockets = (id) => {
+    this.socket = SocketIOClient('http://mourgos.gr?id='+id, { path: "/api/socket.io/" });
+    this.socket.on('connect', () => {
+    });
+    this.socket.on('new-order', () => {
+      console.log("NEW ORDER");
+      this.loadOrders();
+    });
+    this.socket.on('connect_failed', function() {
+       console.log("Sorry, there seems to be an issue with the connection!");
+    });
+    this.socket.on('error', function() {
+       console.log("Sorry,error");
+    });
+  }
+
+  componentWillUnmount(){
+    if(this.socket){
+      this.socket.
+    }
+  }
+
+  loadCatalogue = ()=>{
+    return API.getWithToken("catalogues/my").
     then((data) => {
       let img = (imageBaseURL + data[0].Image);
       this.setState({ 
         ImageUrl : {uri : img}
       });
-    }).then( () =>       
-    API.getWithToken("orders/my")).
-    then( (data) => {
-      this.setState({
-        dataSource : ds.cloneWithRows(data)
-      }); 
-    }).catch( (err) => {
-      console.log("Ok this is handled ");
-      console.log(err);
-
+      this.setupSockets(data[0].id);
     });
   }
-
+  loadOrders = ()=>{
+    return API.getWithToken("orders/my").
+    then( (data) => {
+      this.setState({
+        dataSource : this.ds.cloneWithRows(data)
+      }); 
+    });
+  }
   goToOrder = (orderId) => {
     this.props.navigation.navigate("OrderDetails",{orderId : orderId});
   }
@@ -86,14 +117,6 @@ export default class ListOrdersScreen extends React.Component {
       <KeyboardAvoidingView 
         behavior = "padding"
         style = {styles.container}>
-       
-        <View style = {styles.header}>
-          <Image
-            source = {this.state.ImageUrl}
-            style = {{height: 70, margin: 40}}
-            resizeMode = 'contain'
-          />          
-        </View>
         <ListView style={styles.orderList}
             enableEmptySections={true} 
             dataSource={this.state.dataSource}
