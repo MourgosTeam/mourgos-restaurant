@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 
 export let colors = {
   main: '#EE6055',
@@ -12,6 +12,9 @@ export let colors = {
 };
 
 export let styles = StyleSheet.create({
+  mainContainer: {
+    padding : 0   
+  },
   container: {
     backgroundColor: colors.main,
     flex: 1,
@@ -32,13 +35,20 @@ export let styles = StyleSheet.create({
   loginForm: {
     width: '80%'
   },
+  loginTextInput: {
+    fontSize: 16,
+    lineHeight: 16,
+    paddingBottom: 4,
+    paddingLeft: 4,
+    color: colors.black
+  },
 
   textInput: {
     padding: 10,
     color: colors.dark
   },
   orderList: {
-    width:'97%',
+    width:'100%',
   },
   orderRow : {
     backgroundColor: colors.white,
@@ -49,7 +59,8 @@ export let styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderWidth:  1,
     borderColor: colors.gray,
-    alignItems: 'center'
+    alignItems: 'center',
+    borderRadius: 2
   },
   orderRowLeft: { 
     flex  : 3,
@@ -59,7 +70,8 @@ export let styles = StyleSheet.create({
   orderRowRight : {
     paddingLeft: 5,
     flex: 2,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems : 'center'
   },
   orderRowPrice : {
     textAlign: 'left' 
@@ -97,10 +109,11 @@ export let styles = StyleSheet.create({
     borderColor : colors.lightgray,
     padding : 30,
     backgroundColor : colors.white,
-    width: '100%'  
+    width: '100%',
+    borderRadius: 2  
   },
   orderContainer: {
-    backgroundColor: colors.gray,
+    backgroundColor: colors.main,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',

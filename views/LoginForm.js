@@ -32,12 +32,14 @@ export default class LoginForm extends React.Component {
           name = 'Αναγνωριστικό καταστήματος'
           onChange = { (val) => this.setState({username:val}) }
           value = {this.state.username}
+          style={styles.loginTextInput}
         />
         <LoginFormInput
           name = 'Κωδικός πρόσβασης'
           secureTextEntry = {false}
           onChange = { (val) => this.setState({password:val}) }
           value = {this.state.password}
+          style={styles.loginTextInput}
         />
         <Button
           title = "Συνδεση"

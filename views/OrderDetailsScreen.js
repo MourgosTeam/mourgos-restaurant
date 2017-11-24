@@ -8,9 +8,19 @@ export default class OrderDetailsScreen extends React.Component {
     title: 'Παραγγελία',
   };
 
+  componentWillUnmount(){this._mounted = false}
+  componentWillMount(){this._mounted = true}
+
   constructor(props){
     super(props);
-    
+    // avoid update while unmounted... still bad practice better encapsulate to React.NoNeedToWorryAboutSetStateOnUnmountedComponent
+    this._setState = this.setState;
+    this.setState = (...args) => {
+      if(this._mounted)
+        this._setState(...args);
+    }
+
+
     this.statusTexts = ['ΝΕΑ ΠΑΡΑΓΓΕΛΙΑ', 'ΕΤΟΙΜΑΣΤΗΚΕ','ΣΤΑΛΘΗΚΕ'];
     this.statusTexts[99] = 'ΑΠΟΡΡΙΦΘΗΚΕ';
     this.state = {
@@ -29,8 +39,8 @@ export default class OrderDetailsScreen extends React.Component {
     this.code = props.navigation.state.params.orderId;
     API.getWithToken("orders/" + this.code ).
     then((data) => {
-      console.log(data);
       data.statusText = this.statusTexts[data.Status];
+      API.getWithToken("orders/saw/" + this.code );
       this.setState({order:data});
     });
   }

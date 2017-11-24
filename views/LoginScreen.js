@@ -11,7 +11,7 @@ export default class LoginScreen extends React.Component {
   constructor(props){
     super(props);
     const { navigate } = this.props.navigation;
-    AsyncStorage.getItem("@Mourgos:token").then( (data) => navigate("Orders"));
+    AsyncStorage.getItem("@Mourgos:token").then( (data) => navigate("OrdersStack"));
 
   }
   loggedIn = (user) =>{
@@ -19,7 +19,7 @@ export default class LoginScreen extends React.Component {
     console.log(user);
     if(!user.token)return;
     AsyncStorage.setItem("@Mourgos:token", user.token).
-    then( () => navigate("Orders"))
+    then( () => navigate("OrdersStack"))
 
   }
   render() {

@@ -13,11 +13,12 @@ export default class LoginFormInput extends React.Component {
         autoCapitalize = 'none'
         autoCorrect = {false}
         placeholder = {this.props.name}
-        underlineColorAndroid = {colors.dark}
+        
         placeholderTextColor = {colors.white}
         secureTextEntry = {this.props.secureTextEntry}
         onChangeText={this.props.onChange}
         value={this.props.value}
+        style={this.props.style}
       />
     );
   }

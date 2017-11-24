@@ -20,11 +20,9 @@ class OrderRow extends React.Component{
       }).join('\n');  
       return s;
     });
-    this.opened = this.props.data.Opened;
-    this.bg = this.opened === "1" ? colors.main : colors.secondary;
   }
-  render() {
-    return (<TouchableOpacity style={{backgroundColor : this.bg}} onPress={() => this.props.onPress(this.props.data.id)}>
+  render() { 
+    return (<TouchableOpacity style={{}} onPress={() => this.props.onPress(this.props.data.id)}>
             <View style = {styles.orderRow}>
               <View style = {styles.orderRowLeft}>
                 <Text style={styles.orderRowLeftText, styles.boldText}>
@@ -51,18 +49,9 @@ export default class ListOrdersScreen extends React.Component {
   static navigationOptions = {
     title: 'Παραγγελίες',
   };
-  componentWillUnmount(){this._mounted = false}
-  componentWillMount(){this._mounted = true}
-
+ 
   constructor(props){
     super(props);
-    // avoid update while unmounted... still bad practice better encapsulate to React.NoNeedToWorryAboutSetStateOnUnmountedComponent
-    this._setState = this.setState;
-    this.setState = (...args) => {
-      if(this._mounted)
-        this._setState(...args);
-    }
-
     const { navigate } = props.navigation;
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
@@ -80,6 +69,7 @@ export default class ListOrdersScreen extends React.Component {
     this.socket.on('connect', () => {
     });
     this.socket.on('new-order', () => {
+      console.log("NEW ORDER");
       this.loadOrders();
     });
     this.socket.on('connect_failed', function() {

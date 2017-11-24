@@ -2,8 +2,24 @@ import { AsyncStorage } from 'react-native';
 
 const baseURL = "http://mourgos.gr/api/";
 
+var DEBUG = true;
+var info = (msg) => {
+	if(DEBUG)console.log(msg + "\n");
+}
+
 export default {
+	checkSession : function(navigate){
+		info("Checking session...");
+		return AsyncStorage.getItem("@Mourgos:token").then( (token) => {
+			return this.getIt("catalogues/my",token).catch( (err) => {
+				console.log("We have an error here... Lets see");
+				console.log(err);
+				return AsyncStorage.removeItem("@Mourgos:token").then(() => navigate("Login"));
+			});
+		});
+	},
 	getIt : function(url, token){
+		info("Getting : " + url);
 		return fetch(baseURL+url, {
 		  method: 'GET',
 		  headers: {
@@ -14,6 +30,7 @@ export default {
 		})
 	},
 	postIt : function(url, json, token){
+		info("Posting : " + url);
 		return fetch(baseURL+url, {
 		  method: 'POST',
 		  headers: {
@@ -27,17 +44,11 @@ export default {
 	getWithToken: function(url) {
 		return AsyncStorage.getItem("@Mourgos:token").then( (token) => {
 			return this.getIt(url,token).then((data) => data.json());
-		}).catch( (err)=>{
-			console.log("OK this is handle in .net but why?");
-			console.log(err);
 		});
 	},
 	postWithToken: function(url,json) {
 		return AsyncStorage.getItem("@Mourgos:token").then( (token) => {
 			return this.postIt(url,json,token).then((data) => data.json());
-		}).catch( (err)=>{
-			console.log("OK this is handle in .net but why?");
-			console.log(err);
 		});
 	}
 }
