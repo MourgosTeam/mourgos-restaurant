@@ -14,15 +14,21 @@ class OrderRow extends React.Component{
     this.statusTexts[99] = 'ΑΠΟΡΡΙΦΘΗΚΕ';
     this.highlightColors = [colors.main, colors.lightgreen, colors.lightgreen]; 
     this.description = this.props.data.FullDescription.map((data,index) => {
-      var s =  `${data.Quantity} x ${data.Name} \n`;
+      var s =  `${data.Quantity} x ${data.Name}  \n`;
       s += data.Attributes.map( (attr) => {
-        return `${attr.Name} - ${attr.Value}` + ((attr.Price>0)? `+ ${attr.Price}` : '');
-      }).join('\n');  
+        return `${attr.Name} - ${attr.Value}` + ((attr.Price>0)? `+ ${attr.Price}` : '') + '';
+      }).join('\n') + '\n';  
       return s;
     });
     this.opened = this.props.data.Opened;
     this.bg = this.opened === "1" ? colors.main : colors.secondary;
   }
+
+
+  componentWillUpdate(props){
+    this.bg = props.data.Opened === "1" ? colors.main : colors.secondary
+  }
+
   render() {
     return (<TouchableOpacity style={{backgroundColor : this.bg}} onPress={() => this.props.onPress(this.props.data.id)}>
             <View style = {styles.orderRow}>
@@ -72,14 +78,17 @@ export default class ListOrdersScreen extends React.Component {
     
     this.loadCatalogue().then( () => this.loadOrders()).catch( (err) => {
       API.checkSession(navigate);
-    });    
+    });   
   }
+
 
   setupSockets = (id) => {
     this.socket = SocketIOClient('http://mourgos.gr?id='+id, { path: "/api/socket.io/" });
     this.socket.on('connect', () => {
+      console.log("Connected to webSocket!")
     });
     this.socket.on('new-order', () => {
+      console.log("New order!");
       this.loadOrders();
     });
     this.socket.on('connect_failed', function() {

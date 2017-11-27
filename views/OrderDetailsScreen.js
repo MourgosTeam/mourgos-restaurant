@@ -3,6 +3,23 @@ import { TouchableOpacity, Text, KeyboardAvoidingView, View, Image, TextInput, B
 import {styles, colors} from '../Styles';
 import API from '../helpers/net';
 
+
+class Comments extends React.Component {
+  render() { 
+    if(!this.props.text)return <View></View>;
+    return (
+      <View style={this.props.style || {}}>
+        <Text style={ { fontSize : 19, paddingBottom:5 } , (this.props.textStyle || {}) }>
+          Σχόλια
+        </Text> 
+        <Text style={ { paddingBottom : 10 } , (this.props.textStyle || {})}>
+          { this.props.text } 
+        </Text>
+      </View>
+     );
+  } 
+}
+
 export default class OrderDetailsScreen extends React.Component {
   static navigationOptions = {
     title: 'Παραγγελία',
@@ -28,7 +45,8 @@ export default class OrderDetailsScreen extends React.Component {
         Status : 0,
         statusText : "",
         FullDescription: [],
-        Address : ""
+        Address : "",
+        Comments : ""
       }
     };
     const { navigate } = props.navigation;
@@ -37,17 +55,19 @@ export default class OrderDetailsScreen extends React.Component {
       return;
     }
     this.code = props.navigation.state.params.orderId;
-    API.getWithToken("orders/" + this.code ).
+    API.checkSession(props.navigation.navigate).then( () => API.getWithToken("orders/" + this.code )).
     then((data) => {
       data.statusText = this.statusTexts[data.Status];
       API.getWithToken("orders/saw/" + this.code );
       this.setState({order:data});
     });
   }
+
   changeStatus = (statusCode) => {
     API.postWithToken("orders/" + this.code, { statusCode : statusCode }).
     then((order)=> this.props.navigation.goBack());
   }
+
   render() {
     return (
       <View behavior = "padding"
@@ -57,24 +77,33 @@ export default class OrderDetailsScreen extends React.Component {
         </Text>
         <View style={styles.orderDetailsContainer} >
             <Text style={ { fontSize : 18, paddingBottom:5 } }>Προιόντα</Text>
-            <View style={ { paddingBottom : 5 } }>
+            <View style={styles.orderDetailsInner}>
               {this.state.order.FullDescription.map((data, index)=>{
                 return <View key={index}>
-                  <Text>{data.Quantity} x {data.Name}</Text>
-                  {data.Attributes.map((att,attindex)=>
-                    <Text style={styles.orderDetailsAttributes} key={attindex}>
-                      {att.Name} : {att.Value} 
-                    </Text>
-                  )}
-                </View>;
+                  <View style={{flexDirection:'row'}}>
+                   <Text style={styles.orderDetailsQuantity}>{data.Quantity} x</Text>
+                   <View style={styles.orderDetailsPanel}>
+                    <Text style={styles.orderDetailsProducts}>{data.Name}</Text>
+                    {data.Attributes.map((att,attindex)=>
+                      <Text style={styles.orderDetailsAttributes} key={attindex}>
+                        {att.Name} : {att.Value} 
+                      </Text>
+                    )}
+                   </View>
+                  </View>
+                  <Comments text={data.Comments} style={{paddingLeft:5, backgroundColor:colors.gray}} textStyle={{fontSize:10}}/>
+                </View>
               })}
             </View>
+            
             <Text style={ { fontSize : 16, paddingBottom:5 } }>
               Παράδοση
             </Text>
-            <Text style={ { paddingBottom : 5 } }>
+            <Text style={ { paddingBottom : 10 } }>
               {this.state.order.Address} 
             </Text>
+            <Comments text={this.state.order.Comments} />
+
             <View>
               <Button
                 title = "ΑΠΟΡΡΙΨΗ"

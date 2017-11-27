@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native';
+import { NavigationActions } from 'react-navigation'
 
 const baseURL = "http://mourgos.gr/api/";
 
@@ -11,10 +12,16 @@ export default {
 	checkSession : function(navigate){
 		info("Checking session...");
 		return AsyncStorage.getItem("@Mourgos:token").then( (token) => {
-			return this.getIt("catalogues/my",token).catch( (err) => {
-				console.log("We have an error here... Lets see");
-				console.log(err);
-				return AsyncStorage.removeItem("@Mourgos:token").then(() => navigate("Login"));
+			console.log("Token : " + token);
+			return this.getIt("orders/my",token).then((data) => {
+				console.log(data);
+				if(data.status === 403){
+					info("We have an error here... Lets see");
+					return AsyncStorage.removeItem("@Mourgos:token").then(() => navigate("Login"));
+				}
+				else{
+					return Promise.resolve(true);
+				}
 			});
 		});
 	},
@@ -50,5 +57,15 @@ export default {
 		return AsyncStorage.getItem("@Mourgos:token").then( (token) => {
 			return this.postIt(url,json,token).then((data) => data.json());
 		});
-	}
+	},
+
+	resetNavi(navigation, route){
+	    return navigation.dispatch(NavigationActions.reset(
+        {
+            index: 0,
+            actions: [
+              NavigationActions.navigate({ routeName: route})
+            ]
+        }));
+  	}
 }

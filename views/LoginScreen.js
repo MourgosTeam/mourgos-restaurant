@@ -3,6 +3,8 @@ import { Text, KeyboardAvoidingView, View, Image, TextInput, Button, AsyncStorag
 import {styles, colors} from '../Styles';
 import LoginForm from './LoginForm';
 
+import API from '../helpers/net'
+
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
     title: 'Σύνδεση',
@@ -11,7 +13,10 @@ export default class LoginScreen extends React.Component {
   constructor(props){
     super(props);
     const { navigate } = this.props.navigation;
-    AsyncStorage.getItem("@Mourgos:token").then( (data) => navigate("OrdersStack"));
+    AsyncStorage.getItem("@Mourgos:token").then( (data) => {
+      if(data !== null )
+      navigate("OrdersStack")
+    });
 
   }
   loggedIn = (user) =>{
@@ -19,7 +24,8 @@ export default class LoginScreen extends React.Component {
     console.log(user);
     if(!user.token)return;
     AsyncStorage.setItem("@Mourgos:token", user.token).
-    then( () => navigate("OrdersStack"))
+    then( () => 
+    API.resetNavi(this.props.navigation, "HomeStack") );
 
   }
   render() {

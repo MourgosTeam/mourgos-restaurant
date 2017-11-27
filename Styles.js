@@ -126,10 +126,21 @@ export let styles = StyleSheet.create({
   },
   orderDetailsAttributes : {
     fontSize : 14,
-    color : colors.gray
+    color : colors.dark,
+    paddingLeft: 5
   },
   orderDetailsProducts : {
-    fontSize : 16,
+    fontSize : 15,
     color : colors.dark
-  }
+  },
+  orderDetailsPanel : {
+    paddingBottom: 10 
+  },
+  orderDetailsInner : {
+    paddingBottom : 10,
+    paddingTop : 10
+  },
+  orderDetailsQuantity : {
+    paddingRight : 2
+  },
 });
