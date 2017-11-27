@@ -1,5 +1,7 @@
 import React from 'react';
-import { TouchableOpacity, Text, KeyboardAvoidingView, View, Image, TextInput, Button, ListView, AsyncStorage } from 'react-native';
+import { TouchableOpacity, KeyboardAvoidingView, View, Image, TextInput, Button, ListView, AsyncStorage } from 'react-native';
+import Text from '../helpers/Text'
+
 import {styles, colors} from '../Styles';
 import API from '../helpers/net';
 

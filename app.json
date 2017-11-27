@@ -1,5 +1,4 @@
 {
-  
   "expo": {
     "name": "MourgosApp",
     "icon": "./icon512x512.png",
@@ -12,5 +11,7 @@
     "android": {
       "package": "com.mourgos.restaurantapp"
     }
-  }
+  },
+  "name": "MourgosApp",
+  "displayName": "MourgosApp"
 }

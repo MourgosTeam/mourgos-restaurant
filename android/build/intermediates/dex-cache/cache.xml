@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\1b10fcbc638215d33f54b46665da2a0de224d307\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\classes_2b5d721f37f9dc88a2601bb9c0dfd0a795281f0c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\0f4bd9a5b49066ac653861cf767b130e06e7e2f1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\classes_83f52697dc61f6f345a51827be3e8505b90e76ae.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\69cc9bf621b5a72ed487f33b17a24eaf2063c5e4\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\classes_4af0167ebc4ac51dc1bbbc1bd8a0941db94c94d6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_e4632c8e259fea52990491acb2d2cc5ce79d2550.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.13.0\a9283170b7305c8d92d25aff02a6ab7e45d06cbe\okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\okio-1.13.0_97871223e903f059184fa4d33e4e2a0a7420028f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.6.0\69edde9fc4b01c9fd51d25b83428837478c27254\okhttp-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\okhttp-3.6.0_985bdab70261195bc1e971420546557fb90db811.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.gradle\caches\modules-2\files-2.1\com.facebook.fbui.textlayoutbuilder\staticlayout-proxy\1.0\f162442a19fff13995fbd51ba414d9ee05579080\staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\staticlayout-proxy-1.0_f5fd3dff124bd5a7b953b76ccd5dd68b97917062.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\68c7c6ac4c3704598f36e529cb3ac93139112c82\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\classes_8e5106621c6622f9ef817ab48d344bbdde587eb9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\javax.inject-1_5b78fe79a4b8b915be214a69fe67850c03c690c7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\586abac2fd766db9f51f236e5b201620d1710693\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\classes_c1218f9f0468963de4b6308bd0ebaf10ab881b39.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\9686478ae4d0c0ca9eb6f36e0e3f442ad7529251\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\classes_ac3138a6e0c3f7e589c27b84808058a0b85419f8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\da4e604b5caa0d9b6a573f0b4ba34677ca882d00\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\classes_777e4b18b0634dba7e632bfc7efeaccf45c47f11.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.0\5871fb60dc68d67da54a663c3fd636a10a532948\jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\jsr305-3.0.0_baf964654e00931d560f759249f8426e759688aa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1_79d9578782f21bec097249e8bf6a1d3a35d7c6de.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\68c7c6ac4c3704598f36e529cb3ac93139112c82\output\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1_96cf6e925af21c59381542b2d66c40a6969b7073.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\f76eead644e83af2bb3b1977850d94e50ebd6fc8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\classes_f1800d0f3159704ca4cf957f09b68972307264b9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\7a18371eb023144c9e759a9c1f2df19cc0a92c09\output\jars\libs\infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\infer-annotations-4.0_979b6cba976ce07e7678ca7c2ac7b2f7e1cc92bd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp-urlconnection\3.6.0\3f9b16b774f2c36cfd86dd2053d0b3059531dacc\okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\okhttp-urlconnection-3.6.0_9ffd09c55fe8649027e4a2d8f3e9b76a2283d9ea.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\7a18371eb023144c9e759a9c1f2df19cc0a92c09\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="610b957661a666d16b2cd4664c6bf4370226dfd2">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\classes_cd491ec5df100bcede973af42210ee5bf837f6c3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\154cf775a52ff67f99eafec4f6b985d96dfddc69\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\classes_953f35eaa1a38e7588e05123d4f350c1d6df9466.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Lapteri\.android\build-cache\8d14d3e64f2b13d4e47cbfc34141964ae1a11bea\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="C:\Work\Mourgos\mourgos-restaurant\android\app\build\intermediates\pre-dexed\debug\classes_e1d1cae5d132d7e124952f5fa2496c0ada78d7fd.jar" />
+    </item>
+
+</items>

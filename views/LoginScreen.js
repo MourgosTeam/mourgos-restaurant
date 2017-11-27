@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, KeyboardAvoidingView, View, Image, TextInput, Button, AsyncStorage } from 'react-native';
+import {  KeyboardAvoidingView, View, Image, TextInput, Button, AsyncStorage } from 'react-native';
+import Text from '../helpers/Text'
 import {styles, colors} from '../Styles';
 import LoginForm from './LoginForm';
 
