@@ -8,8 +8,8 @@ export let colors = {
   white: '#FCFCFF',
   lightgray : '#FAFAFA',
   gray : '#CECECE',
-  lightgreen: '#60EE55',
-  green: '#98FB98',
+  lightgreen: '#98FB98',
+  green: '#60EE55',
   black: '#000000'
 };
 
@@ -33,7 +33,9 @@ export let styles = StyleSheet.create({
     fontSize: 40,
     color: colors.white,
   },
-
+  logoutButton: {
+    paddingRight: 7
+  },
   loginForm: {
     width: '80%'
   },
@@ -145,4 +147,7 @@ export let styles = StyleSheet.create({
   orderDetailsQuantity : {
     paddingRight : 2
   },
+  orderDetailsButtonsView: {
+    paddingTop: 10
+  }
 });

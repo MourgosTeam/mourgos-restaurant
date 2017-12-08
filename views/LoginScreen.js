@@ -1,35 +1,45 @@
 import React from 'react';
-import { Text, KeyboardAvoidingView, View, Image, TextInput, Button, AsyncStorage } from 'react-native';
+import { KeyboardAvoidingView, View, Image, TextInput, Button, AsyncStorage } from 'react-native';
 import {styles, colors} from '../Styles';
 import LoginForm from './LoginForm';
 
+import Text from '../helpers/Text';
 import API from '../helpers/net'
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
     title: 'Σύνδεση',
-  };
+  }
 
   constructor(props){
     super(props);
-    const { navigate } = this.props.navigation;
+    this.navigation = this.props.navigation;
+  }
+
+  componentWillMount(){
+    console.log("Component Login will mount!");
+    this._mounted = true;
     AsyncStorage.getItem("@Mourgos:token").then( (data) => {
       if(data !== null )
-      navigate("OrdersStack")
+        API.checkSession(this.navigation).then( () => {
+          if(this._mounted)
+            API.resetNavi(this.navigation, "HomeStack")
+        });
     });
-
   }
-  loggedIn = (user) =>{
-    const { navigate } = this.props.navigation;
+
+  componentWillUnmount(){
+    this._mounted = false;
+  }
+  
+  loggedIn = (user) => {
     console.log(user);
     if(!user.token)return;
     AsyncStorage.setItem("@Mourgos:token", user.token).
-    then( () => 
-    API.resetNavi(this.props.navigation, "HomeStack") );
-
+    then( () =>   API.checkSession(this.navigation) ).
+    then( () =>   API.resetNavi(this.navigation, "HomeStack") );
   }
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <KeyboardAvoidingView 
         behavior = "padding"

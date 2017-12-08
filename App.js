@@ -23,13 +23,14 @@ const OrderNavi = StackNavigator({
 });
 const HomeStack = TabNavigator({
   OrdersStack: { screen: OrderNavi },
-  History: { 
-  	screen: HistoryScreen,
-  	navigationOptions: {
-      title: 'Ιστορικό',
-    }
-  }
-}, {
+  // History: { 
+  // 	screen: HistoryScreen,
+  // 	navigationOptions: {
+  //     title: 'Ιστορικό',
+  //   }
+  // }
+}
+, {
   tabBarPosition: 'bottom',
   animationEnabled: true,
   tabBarOptions: {

@@ -1,8 +1,11 @@
 import React from 'react';
-import { TouchableOpacity, Text, KeyboardAvoidingView, View, Image, TextInput, Button, ListView, AsyncStorage } from 'react-native';
+import { ScrollView, TouchableOpacity,  KeyboardAvoidingView, View, Image, TextInput, Button, ListView, AsyncStorage } from 'react-native';
 import {styles, colors} from '../Styles';
 import API from '../helpers/net';
 
+import Constants from '../helpers/constants';
+
+import Text from '../helpers/Text';
 
 class Comments extends React.Component {
   render() { 
@@ -38,8 +41,7 @@ export default class OrderDetailsScreen extends React.Component {
     }
 
 
-    this.statusTexts = ['ΝΕΑ ΠΑΡΑΓΓΕΛΙΑ', 'ΕΤΟΙΜΑΣΤΗΚΕ','ΣΤΑΛΘΗΚΕ'];
-    this.statusTexts[99] = 'ΑΠΟΡΡΙΦΘΗΚΕ';
+    this.statusTexts = Constants.statusText;
     this.state = {
       order: {
         Status : 0,
@@ -50,16 +52,16 @@ export default class OrderDetailsScreen extends React.Component {
         id: ""
       }
     };
-    const { navigate } = props.navigation;
     if(!props.navigation.state.params || !props.navigation.state.params.orderId){
       props.navigation.goBack();
       return;
     }
     this.code = props.navigation.state.params.orderId;
-    API.checkSession(props.navigation.navigate).then( () => API.getWithToken("orders/" + this.code )).
+    API.checkSession(props.navigation).then( () => API.getWithToken("orders/" + this.code )).
     then((data) => {
       data.statusText = this.statusTexts[data.Status];
-      API.getWithToken("orders/saw/" + this.code );
+      if(data.Status === "0")
+        API.postWithToken("orders/saw/" + this.code, {} );
       this.setState({order:data});
     });
   }
@@ -79,7 +81,9 @@ export default class OrderDetailsScreen extends React.Component {
         </Text>
         <View style={styles.orderDetailsContainer} >
             <Text style={ { fontSize : 18, paddingBottom:5, textAlign: 'center'} }>
-              Προιόντα <br />
+              Προιόντα 
+            </Text> 
+            <Text style={ { fontSize : 18, paddingBottom:5, textAlign: 'center'} }>
               {this.state.order.id.toUpperCase()}
             </Text>
             <View style={styles.orderDetailsInner}>
@@ -107,19 +111,36 @@ export default class OrderDetailsScreen extends React.Component {
             <Text style={ { paddingBottom : 10 } }>
               {this.state.order.Address} 
             </Text>
+            <Text style={ { fontSize : 16, paddingBottom:5 } }>
+              Τηλέφωνο Πελάτη
+            </Text>
+            <Text style={ { paddingBottom : 10 } }>
+              {this.state.order.Phone} 
+            </Text>
             <Comments text={this.state.order.Comments} />
 
-            <View style={{paddingTop: 10}}>
-              <Button
-                title = "ΑΠΟΡΡΙΨΗ"
-                color = {colors.main}
-                onPress={() => this.changeStatus(99)}
-              />
-              <Button
-                title = "ΕΤΟΙΜΑΣΤΗΚΕ"
-                color = {colors.lightgreen}
-                onPress={() => this.changeStatus(1)}
-              />
+            <View style={styles.orderDetailsButtonsView}>
+              <View style={{paddingBottom:7}}>
+                <Button
+                  title = "ΑΠΟΡΡΙΨΗ"
+                  color = {colors.main}
+                  onPress={() => this.changeStatus(99)}
+                />
+              </View>
+              <View style={{paddingBottom:7}}>
+                <Button
+                  title = "ΕΤΟΙΜΑΖΕΤΑΙ"
+                  color = {colors.lightgreen}
+                  onPress={() => this.changeStatus(1)}
+                />
+              </View>
+              <View style={{paddingBottom:7}}>
+                <Button
+                  title = "ΕΤΟΙΜΑΣΤΗΚΕ"
+                  color = {colors.green}
+                  onPress={() => this.changeStatus(2)}
+                />
+              </View>
             </View>
         </View>
       </View>

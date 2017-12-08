@@ -52,16 +52,15 @@ export default class ListOrdersScreen extends React.Component {
  
   constructor(props){
     super(props);
-    const { navigate } = props.navigation;
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource : this.ds.cloneWithRows([]),
       ImageUrl : require('../img/mourgos-logo-white.png')
     }
     
-    this.loadCatalogue().then( () => this.loadOrders()).catch( (err) => {
-      API.checkSession(navigate);
-    });    
+    //this.loadCatalogue().then( () => this.loadOrders()).catch( (err) => {
+    //  API.checkSession(navigate);
+    //});    
   }
 
   setupSockets = (id) => {

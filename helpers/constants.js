@@ -4,7 +4,7 @@ let statusText = ['ΝΕΑ ΠΑΡΑΓΓΕΛΙΑ','ΕΤΟΙΜΑΖΕΤΑΙ', 'ΕΤ�
 statusText[10] = 'ΟΛΟΚΛΗΡΩΘΗΚΕ';
 statusText[99] = 'ΑΠΟΡΡΙΦΘΗΚΕ';
 
-let highlightColors = [colors.main, colors.light, colors.lightgreen, colors.green];
+let highlightColors = [colors.main, colors.secondary, colors.green, colors.green];
 highlightColors[10] = colors.green;
 highlightColors[99] = colors.black;
 
