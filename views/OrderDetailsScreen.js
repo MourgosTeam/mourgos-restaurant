@@ -46,7 +46,8 @@ export default class OrderDetailsScreen extends React.Component {
         statusText : "",
         FullDescription: [],
         Address : "",
-        Comments : ""
+        Comments : "",
+        id: ""
       }
     };
     const { navigate } = props.navigation;
@@ -70,13 +71,17 @@ export default class OrderDetailsScreen extends React.Component {
 
   render() {
     return (
+      <ScrollView style={{backgroundColor: colors.main}}>
       <View behavior = "padding"
         style = {styles.orderContainer}>
         <Text style={styles.orderDetailsHeader}> 
           {this.state.order.statusText}
         </Text>
         <View style={styles.orderDetailsContainer} >
-            <Text style={ { fontSize : 18, paddingBottom:5 } }>Προιόντα</Text>
+            <Text style={ { fontSize : 18, paddingBottom:5, textAlign: 'center'} }>
+              Προιόντα <br />
+              {this.state.order.id.toUpperCase()}
+            </Text>
             <View style={styles.orderDetailsInner}>
               {this.state.order.FullDescription.map((data, index)=>{
                 return <View key={index}>
@@ -91,7 +96,7 @@ export default class OrderDetailsScreen extends React.Component {
                     )}
                    </View>
                   </View>
-                  <Comments text={data.Comments} style={{paddingLeft:5, backgroundColor:colors.gray}} textStyle={{fontSize:10}}/>
+                  <Comments text={data.Comments} style={{paddingLeft:5, backgroundColor:colors.gray}} textStyle={{fontSize:12}}/>
                 </View>
               })}
             </View>
@@ -104,7 +109,7 @@ export default class OrderDetailsScreen extends React.Component {
             </Text>
             <Comments text={this.state.order.Comments} />
 
-            <View>
+            <View style={{paddingTop: 10}}>
               <Button
                 title = "ΑΠΟΡΡΙΨΗ"
                 color = {colors.main}
@@ -118,6 +123,7 @@ export default class OrderDetailsScreen extends React.Component {
             </View>
         </View>
       </View>
+      </ScrollView>
     );
   }
 }

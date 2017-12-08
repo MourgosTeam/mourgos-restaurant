@@ -10,9 +10,8 @@ import SocketIOClient from 'socket.io-client';
 class OrderRow extends React.Component{
   constructor(props){
     super(props);
-    this.statusTexts = ['ΝΕΑ ΠΑΡΑΓΓΕΛΙΑ', 'ΕΤΟΙΜΑΣΤΗΚΕ','ΣΤΑΛΘΗΚΕ'];
-    this.statusTexts[99] = 'ΑΠΟΡΡΙΦΘΗΚΕ';
-    this.highlightColors = [colors.main, colors.lightgreen, colors.lightgreen]; 
+    this.statusTexts = Constants.statusTexts;
+    this.highlightColors = Constants.highlightColors; 
     this.description = this.props.data.FullDescription.map((data,index) => {
       var s =  `${data.Quantity} x ${data.Name}  \n`;
       s += data.Attributes.map( (attr) => {
@@ -81,9 +80,8 @@ export default class ListOrdersScreen extends React.Component {
     });   
   }
 
-
   setupSockets = (id) => {
-    this.socket = SocketIOClient('http://mourgos.gr?id='+id, { path: "/api/socket.io/" });
+    this.socket = API.getSocket(id);
     this.socket.on('connect', () => {
       console.log("Connected to webSocket!")
     });

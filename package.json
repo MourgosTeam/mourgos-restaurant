@@ -11,7 +11,7 @@
   "scripts": {
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
+    "android": "cross-env EXPO_DEBUG=true react-native-scripts android",
     "pubandroid": "react-native-scripts android --variant=release",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch"

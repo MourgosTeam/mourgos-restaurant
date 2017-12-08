@@ -8,7 +8,9 @@ export let colors = {
   white: '#FCFCFF',
   lightgray : '#FAFAFA',
   gray : '#CECECE',
-  lightgreen: '#60EE55'
+  lightgreen: '#60EE55',
+  green: '#98FB98',
+  black: '#000000'
 };
 
 export let styles = StyleSheet.create({

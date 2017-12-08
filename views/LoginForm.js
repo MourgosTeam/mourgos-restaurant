@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, KeyboardAvoidingView, View, Image, TextInput, Button } from 'react-native';
+import { KeyboardAvoidingView, View, Image, TextInput, Button } from 'react-native';
 import {styles, colors} from '../Styles';
 import LoginFormInput from './LoginFormInput';
 import API from '../helpers/net';
+import Text from '../helpers/Text';
 
 export default class LoginForm extends React.Component {
   constructor(props){
@@ -20,8 +21,24 @@ export default class LoginForm extends React.Component {
       password : this.state.password
     };
     console.log(user);
-    API.postIt("users/login",user).then((data) => data.json()).
-    then((data) => this.props.onLogin(data));
+    API.postIt("users/login",user).then((data) => {
+      if(data.status !== 200){
+        Alert.alert(
+          'Αποτυχία σύνδεσης',
+          'Λάθος στοιχεία',
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          { cancelable: false }
+        )
+        return Promise.reject("Bad credentials");
+      }
+      else{
+        return data.json();
+      }
+    }).
+    then((data) => this.props.onLogin(data)).
+    catch( (err) => null);
   }
 
   render() {
