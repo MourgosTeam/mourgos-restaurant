@@ -3,7 +3,7 @@ import { NavigationActions } from 'react-navigation'
 
 import SocketIOClient from 'socket.io-client';
 
-const baseURL = "http://mourgos.gr/api/";
+const baseURL = "https://mourgos.gr/api/";
 //const baseURL = "http://192.168.1.10:3000/";
 
 var DEBUG = true;
@@ -20,7 +20,7 @@ function jsonForm(data){
 
 //let socket = SocketIOClient('http://mourgos.gr?id=all', { path: "/api/socket.io/" });
 function getSocket(id) {
-       return SocketIOClient('http://mourgos.gr?id=all', { path: "/api/socket.io/" });
+       return SocketIOClient('https://mourgos.gr?id=all', { path: "/api/socket.io/" });
        //return SocketIOClient('http://192.168.1.10:3000?id=' + id, { path: "/socket.io/" });
 }
 export default {
