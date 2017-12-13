@@ -15,13 +15,6 @@ class OrderRow extends React.Component{
     super(props);
     this.statusTexts = Constants.statusText;
     this.highlightColors = Constants.highlightColors; 
-    this.description = this.props.data.FullDescription.map((data,index) => {
-      var s =  `${data.Quantity} x ${data.Name}  \n`;
-      s += data.Attributes.map( (attr) => {
-        return `${attr.Name} - ${attr.Value}` + ((attr.Price>0)? `+ ${attr.Price}` : '') + '';
-      }).join('\n') + '\n';  
-      return s;
-    });
     this.bg = props.data.Status === "0" ? colors.secondary : colors.main;
     this.state = {
       highlightColor: this.highlightColors[props.data.Status]
@@ -41,10 +34,16 @@ class OrderRow extends React.Component{
             <View style = {styles.orderRow}>
               <View style = {styles.orderRowLeft}>
                 <Text style={[styles.orderRowLeftText, styles.boldText]}>
-                  {this.props.data.Address} - {this.props.data.Name}
+                  {this.props.data.id.toUpperCase()} - {this.props.data.Address}
                 </Text>
                 <Text style={styles.orderRowLeftDescription}>
-                  {this.description}
+                  {this.props.data.FullDescription.map((data,index) => {
+                    var s =  `${data.Quantity} x ${data.Name}  \n`;
+                    s += data.Attributes.map( (attr) => {
+                      return `${attr.Name} - ${attr.Value}` + ((attr.Price>0)? `+ ${attr.Price}` : '') + '';
+                    }).join('\n') + '\n';  
+                    return s;
+                  })}
                 </Text>
               </View>
               <View style = {styles.orderRowRight}>
@@ -66,10 +65,16 @@ export default class ListOrdersScreen extends React.Component {
     let title = 'Παραγγελίες';
     let headerRight = (
       <View style={styles.logoutButton}>
-      <Button
-        title="Logout"
-        onPress={params.logout ? params.logout : () => null}
-      />
+        <View style={{paddingRight: 5}}>
+          <Button
+            title="Refresh"
+            onPress={params.refresh ? params.refresh : () => null}
+          />
+        </View>
+        <Button
+          title="Logout"
+          onPress={params.logout ? params.logout : () => null}
+        />
       </View>
     );
     return { title, headerRight };
@@ -78,7 +83,7 @@ export default class ListOrdersScreen extends React.Component {
   componentWillMount(){this._mounted = true}
 
   componentDidMount(){
-    this.navigation.setParams({ logout: this.logout });
+    this.navigation.setParams({ logout: this.logout, refresh: this.loadOrders });
   }
 
   constructor(props){
@@ -104,6 +109,7 @@ export default class ListOrdersScreen extends React.Component {
 
 
     this.soundObject = new Expo.Audio.Sound();
+    this.prepareSound();
   }
 
   setupSockets = (id) => {
@@ -127,10 +133,21 @@ export default class ListOrdersScreen extends React.Component {
     });
   }
 
+  prepareSound = async () => {
+      await Expo.Audio.setIsEnabledAsync(true);
 
+      await Expo.Audio.setAudioModeAsync({
+        playsInSilentModeIOS: true,
+        allowsRecordingIOS: false,
+        interruptionModeIOS: Expo.Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+        shouldDuckAndroid: false,
+        interruptionModeAndroid: Expo.Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+      });
+      await this.soundObject.loadAsync(require('../assets/notification.mp3'));
+  }
   playSound = async () => {
     try {
-      await this.soundObject.loadAsync(require('../assets/notification.mp3'));
+      await this.soundObject.setPositionAsync(0);
       await this.soundObject.playAsync();
       // Your sound is playing!
     } catch (error) {

@@ -34,7 +34,10 @@ export let styles = StyleSheet.create({
     color: colors.white,
   },
   logoutButton: {
-    paddingRight: 7
+    paddingRight: 7,
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    flexDirection:'row'
   },
   loginForm: {
     width: '80%'
