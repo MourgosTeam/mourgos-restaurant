@@ -68,7 +68,8 @@ export default class OrderDetailsScreen extends React.Component {
 
   changeStatus = (statusCode) => {
     API.postWithToken("orders/" + this.code, { statusCode : statusCode }).
-    then((order)=> this.props.navigation.goBack());
+    then((order)=> this.props.navigation.goBack()).
+    catch(() => true); //  Handled exception 
   }
 
   render() {
