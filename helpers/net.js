@@ -3,8 +3,8 @@ import { NavigationActions } from 'react-navigation'
 
 import SocketIOClient from 'socket.io-client';
 
-//const baseURL = "https://mourgos.gr/api/";
-const baseURL = "http://192.168.2.4:3000/";
+const baseURL = "https://mourgos.gr/api/";
+//const baseURL = "http://192.168.2.4:3000/";
 
 var DEBUG = false;
 var info = (msg) => {
@@ -20,8 +20,8 @@ function jsonForm(data){
 
 //let socket = SocketIOClient('http://mourgos.gr?id=all', { path: "/api/socket.io/" });
 function getSocket(id) {
-      //let socket = SocketIOClient('https://mourgos.gr?id='+id, { path: "/api/socket.io/" });
-      let socket = SocketIOClient('http://192.168.2.4:3000?id='+id, { path: "/socket.io/" });
+      let socket = SocketIOClient('https://mourgos.gr?id='+id, { path: "/api/socket.io/" });
+      //let socket = SocketIOClient('http://192.168.2.4:3000?id='+id, { path: "/socket.io/" });
       socket.on('connect', function() {
          console.log("socket connect!");
       });
@@ -80,14 +80,12 @@ export default {
                   { cancelable: false }
                 )
                 throw Error("No net");
-            }
-            else if(data.status === 403){
+            } else if(data.status === 403) {
                 info("We have an error here... Lets see");
                 info("This is a forbidden response. This token is no more valid : " + Token);
                 AsyncStorage.removeItem("@Mourgos:token").then(() => this.navigate(navigation, "Login", "Login"));
                 throw Error("Forbidden! go login");
-            }
-            else{
+            } else {
                 info(data.status);
                 info("Session OK");
                 return Token;

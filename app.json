@@ -3,7 +3,7 @@
   "expo": {
     "name": "MourgosApp",
     "icon": "./icon512x512.png",
-    "version": "1.0.0",
+    "version": "1.3.0",
     "slug": "Mourgos",
     "sdkVersion": "22.0.0",
     "ios": {

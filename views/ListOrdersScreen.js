@@ -79,7 +79,10 @@ export default class ListOrdersScreen extends React.Component {
     );
     return { title, headerRight };
   };
-  componentWillUnmount(){this._mounted = false}
+  componentWillUnmount(){
+    this._mounted = false
+    this.closeTimer();
+  }
   componentWillMount(){this._mounted = true}
 
   componentDidMount(){
@@ -133,6 +136,25 @@ export default class ListOrdersScreen extends React.Component {
     });
   }
 
+  setupTimer = () => {
+    if(!this.timer) { 
+      this.timer = setInterval(() => this.playSound(), 30000);
+    }
+  }
+  closeTimer = () => {
+    if(this.timer) {
+      clearInterval(this.timer);
+    }
+    this.timer = undefined;
+  }
+  componentDidUpdate() {
+    if(this.state.haveNewOrders) {
+      this.setupTimer();
+    } else {
+      this.closeTimer();
+    }
+  }
+
   prepareSound = async () => {
       await Expo.Audio.setIsEnabledAsync(true);
 
@@ -146,6 +168,7 @@ export default class ListOrdersScreen extends React.Component {
       await this.soundObject.loadAsync(require('../assets/notification.mp3'));
   }
   playSound = async () => {
+    console.log("Lets play sound");
     try {
       await this.soundObject.setPositionAsync(0);
       await this.soundObject.playAsync();
@@ -159,6 +182,7 @@ export default class ListOrdersScreen extends React.Component {
 
   logout = () => {
     console.log("Logging out...");
+    this.closeTimer();
     return AsyncStorage.removeItem("@Mourgos:token").
     then(() => API.navigate(this.props.navigation,  "Login", "Login"));
   }
@@ -177,7 +201,8 @@ export default class ListOrdersScreen extends React.Component {
     return API.getWithToken("orders/my").
     then( (data) => {
       this.setState({
-        dataSource : this.ds.cloneWithRows(data)
+        dataSource : this.ds.cloneWithRows(data),
+        haveNewOrders: data.reduce((a,b) => a || b.Status === "0", false)
       }); 
     });
   }
