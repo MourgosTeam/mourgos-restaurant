@@ -4,6 +4,7 @@ import LoginScreen from './views/LoginScreen';
 import ListOrdersScreen from './views/ListOrdersScreen';
 import OrderDetailsScreen from './views/OrderDetailsScreen';
 import HistoryScreen from './views/HistoryScreen';
+import CalculatorScreen from './views/CalculatorScreen';
 
 import {View, Text, Platform, StatusBar} from 'react-native';
 import Tabs from 'react-native-tabs';
@@ -23,12 +24,7 @@ const OrderNavi = StackNavigator({
 });
 const HomeStack = TabNavigator({
   OrdersStack: { screen: OrderNavi },
-  // History: { 
-  // 	screen: HistoryScreen,
-  // 	navigationOptions: {
-  //     title: 'Ιστορικό',
-  //   }
-  // }
+  Calculator: { screen: CalculatorScreen }
 }
 , {
   tabBarPosition: 'bottom',

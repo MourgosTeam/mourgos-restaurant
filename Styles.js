@@ -152,5 +152,45 @@ export let styles = StyleSheet.create({
   },
   orderDetailsButtonsView: {
     paddingTop: 10
+  },
+  calculatorContainer: {
+    paddingTop: 20,
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    width: '100%',
+
+  },
+  calculatorgain: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+    borderWidth: 1,
+    borderColor: colors.white,
+    paddingTop: 5,
+    paddingBottom: 5
+  },
+  smallgainContainer: { 
+    paddingTop: 10, 
+    flexDirection: 'row', 
+    justifyContent: 'space-around',
+    width: '95%',
+  },
+  gainText: {
+    fontSize: 28
+  },
+  smallgainText: {
+    fontSize: 14
+  },
+  calculatorbuttons: {
+    paddingTop: 20,
+    flexDirection: 'row'
+  },
+  calculatorbutton: {
+    paddingLeft: 5,
+    paddingRight: 5
+  },
+  selectDate: {
+    paddingTop: 20
   }
 });
