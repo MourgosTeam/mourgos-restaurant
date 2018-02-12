@@ -11,11 +11,11 @@ var info = (msg) => {
 	if(DEBUG)console.log(msg + "\n");
 }
 function jsonForm(data){
-       if(data && data.status && data.status === 200){
-               return data.json();
-       }
-       info(data);
-       return Promise.reject("This is not json or there is an error with this data.");
+      if(data && data.status && data.status === 200){
+        return data.json();
+      }
+      info(data);
+      return Promise.reject("This is not json or there is an error with this data.");
 }
 
 //let socket = SocketIOClient('http://mourgos.gr?id=all', { path: "/api/socket.io/" });

@@ -28,7 +28,7 @@ export default class CalculatorScreen extends React.Component {
       allOrders: []
     }
     
-    this.loadOrders();
+    setTimeout( () => this.loadOrders(), 0);
   }
 
   goToOrder = (orderId) => {
@@ -61,14 +61,12 @@ export default class CalculatorScreen extends React.Component {
 
   filterOrderDate = (order, date) => {
     let temp = this.today(0,order.PostDate);
-    console.log(temp);
     return temp === date;
   }
   caclculateNumbers = (filtered) => {
     let tziros = 0;
     for (var i=0;i<filtered.length;i+=1) {
       tziros += parseFloat(filtered[i].Total);
-      console.log(filtered[i]);
     }
     let gain = (tziros * (1-Constants.gainMultiplier)).toFixed(2);
     let numberOfOrders = filtered.length;
@@ -117,6 +115,10 @@ export default class CalculatorScreen extends React.Component {
               <View style = {{ alignItems: 'center' }}>
                 <Text style = {styles.smallgainText}>Παραγγελίες</Text>
                 <Text style = {styles.smallgainText}>{this.state.numberOfOrders}</Text>
+              </View>
+              <View style = {{ alignItems: 'center' }}>
+                <Text style = {styles.smallgainText}>Μεση Τιμη α.π.</Text>
+                <Text style = {styles.smallgainText}>{this.state.numberOfOrders && (this.state.tziros / this.state.numberOfOrders)}</Text>
               </View>
               {
                 // Add more info here  f.e. number of orders 

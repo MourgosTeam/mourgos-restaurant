@@ -73,6 +73,8 @@ export default class OrderDetailsScreen extends React.Component {
   }
 
   render() {
+    const d = new Date(this.state.order.PostDate);
+    let dateString = d.getHours() + ":" + d.getMinutes() + " - " + d.getDate() + "/" + (d.getMonth() + 1);
     return (
       <ScrollView style={{backgroundColor: colors.main}}>
       <View behavior = "padding"
@@ -82,11 +84,11 @@ export default class OrderDetailsScreen extends React.Component {
         </Text>
         <View style={styles.orderDetailsContainer} >
             <Text style={ { fontSize : 18, paddingBottom:5, textAlign: 'center'} }>
-              Προιόντα 
-            </Text> 
-            <Text style={ { fontSize : 18, paddingBottom:5, textAlign: 'center'} }>
               {this.state.order.id.toUpperCase()}
             </Text>
+            <Text style={ { fontSize : 18, paddingBottom:5, textAlign: 'center'} }>
+              Προιόντα 
+            </Text> 
             <View style={styles.orderDetailsInner}>
               {this.state.order.FullDescription.map((data, index)=>{
                 return <View key={index}>
@@ -105,6 +107,12 @@ export default class OrderDetailsScreen extends React.Component {
                 </View>
               })}
             </View>
+            <Text style={ { fontSize : 16, paddingBottom:5 } }>
+              Ώρα και ημερομηνία
+            </Text>
+            <Text style={ { paddingBottom : 10 } }>
+              {dateString} 
+            </Text>
             
             <Text style={ { fontSize : 16, paddingBottom:5 } }>
               Παράδοση

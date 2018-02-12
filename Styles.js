@@ -111,6 +111,11 @@ export let styles = StyleSheet.create({
   centerText : {
     textAlign : 'center'
   },
+  smalldate : {
+    fontSize: 12,
+    paddingTop: 20,
+    color: colors.secondary
+  },
   orderDetailsContainer : {
     borderWidth : 1,
     borderColor : colors.lightgray,

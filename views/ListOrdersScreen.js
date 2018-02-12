@@ -30,6 +30,8 @@ class OrderRow extends React.Component{
   }
 
   render() {
+    const d = new Date(this.props.data.PostDate);
+    let dateString = d.getDate() + "/" + (d.getMonth() + 1);
     return (<TouchableOpacity style={{backgroundColor : this.bg}} onPress={() => this.props.onPress(this.props.data.id)}>
             <View style = {styles.orderRow}>
               <View style = {styles.orderRowLeft}>
@@ -52,6 +54,9 @@ class OrderRow extends React.Component{
                 </Text> 
                 <Text style={[styles.orderRowRightText, styles.centerText]}>  
                   { parseFloat(this.props.data.Total).toFixed(2) } €
+                </Text>
+                <Text style={styles.smalldate}>
+                  { dateString }
                 </Text>
               </View>
             </View> 
